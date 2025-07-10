@@ -1,0 +1,33 @@
+Declaration：
+使用电脑配置信息为Window11/Ubuntu22.04双系统
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 570.133.20             Driver Version: 570.133.20     CUDA Version: 12.8     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA GeForce RTX 4080 ...    Off |   00000000:01:00.0  On |                  N/A |
+| N/A   44C    P8              7W /   60W |     916MiB /  12282MiB |     44%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|    0   N/A  N/A            1814      G   /usr/lib/xorg/Xorg                      320MiB |
+|    0   N/A  N/A            2031      G   /usr/bin/gnome-shell                     50MiB |
+|    0   N/A  N/A            4016      G   .../6436/usr/lib/firefox/firefox        353MiB |
+|    0   N/A  N/A           12485      G   ...OTP --variations-seed-version         23MiB |
+|    0   N/A  N/A           36027      G   /usr/share/code/code                     96MiB |
++-----------------------------------------------------------------------------------------+
+
+
+Steps:
+1、创建环境：conda create -n rail_marking_new python=3.8
+2、激活环境：conda activate rail_marking_new
+3、安装pytorch：conda install pytorch==2.1.2 torchvision==0.16.2 torchaudio==2.1.2 pytorch-cuda=11.8 -c pytorch -c nvidia
+4、配置依赖：pip install -r requirements.txt
+5、测试视频：python ./scripts/segmentation/test_video.py -snapshot ./weights/bisenetv2_checkpoint_BiSeNetV2_epoch_300.pth -video_path ./data/samples/sakura.mp4
